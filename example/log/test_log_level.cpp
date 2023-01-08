@@ -5,6 +5,10 @@
 #include "../../sirius/log/log_level.h"
 #include <iostream>
 
+typedef struct a {
+    int x = 0;
+} b;
+
 int main() {
   std::string test;
   test += sirius::LogLevel::GetInstance().LogLevelToString(sirius::LogLevel::INFO);
