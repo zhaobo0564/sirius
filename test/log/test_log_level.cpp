@@ -2,7 +2,7 @@
 // Created by zhaobo on 22-12-18.
 //
 
-#include "../../sirius/log/log_level.h"
+#include "log_level.h"
 #include <iostream>
 
 typedef struct a {

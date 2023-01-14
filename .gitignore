@@ -1,3 +1,5 @@
 /.clang-format
 .idea
 /cmake-build-debug/
+**cmake-build**
+/recipes/ubuntu_1804_x86/cmake-build-debug-system/
