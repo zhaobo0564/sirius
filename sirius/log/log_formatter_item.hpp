@@ -34,6 +34,24 @@ public:
   }
 };
 
+class LogNameFormatItem: public LogFormatterItem {
+public:
+  LogNameFormatItem() {};
+
+  void format(std::ostream& oss, LogEvent::ptr log_event) override {
+    oss << log_event->getLogger()->getName();
+  }
+};
+
+class LineFormatItem : public LogFormatterItem {
+public:
+  LineFormatItem() {};
+
+  void format(std::ostream& oss, LogEvent::ptr log_event) override {
+    oss << log_event->getLogLineNum();
+  }
+};
+
 class FileNameFormatItem : public LogFormatterItem {
 public:
   FileNameFormatItem() {};
@@ -118,6 +136,77 @@ public:
 private:
   std::string format_;
 };
+
+class StringFormatItem : public LogFormatterItem {
+public:
+  StringFormatItem(const std::string msg = "") : msg_(msg) {
+
+  };
+
+  void format(std::ostream &oss, LogEvent::ptr) {
+    oss << msg_;
+  }
+
+private:
+  const std::string msg_;
+};
+
+
+// factory model
+static LogFormatterItem::ptr getFormatterItem (const std::string name, const std::string var = "") {
+  if (name == "m") {
+    return LogFormatterItem::ptr(new MessageFormatItem());
+  }
+
+  if (name == "p") {
+    return LogFormatterItem::ptr(new LevelFormatItem());
+  }
+
+  if (name == "r") {
+    return LogFormatterItem::ptr(new LogTimeFormatItem());
+  }
+
+  if (name == "c") {
+    return LogFormatterItem::ptr(new LogNameFormatItem());
+  }
+
+  if (name == "t") {
+    return LogFormatterItem::ptr(new TheadIdFormatItem());
+  }
+
+  if (name == "n") {
+    return LogFormatterItem::ptr(new StringFormatItem("\n"));
+  }
+
+  if (name == "d") {
+    if (!var.empty()) {
+      return LogFormatterItem::ptr(new LogTimeFormatItem(var));
+    }
+    return LogFormatterItem::ptr(new LogTimeFormatItem());
+  }
+
+  if (name == "f") {
+    return LogFormatterItem::ptr(new FileNameFormatItem());
+  }
+
+  if (name == "l") {
+    return LogFormatterItem::ptr(new LineFormatItem());
+  }
+
+  if (name == "T") {
+    return LogFormatterItem::ptr(new StringFormatItem("\t"));
+  }
+
+  if (name == "F") {
+    return LogFormatterItem::ptr(new FiberIdFormatItem());
+  }
+
+  if (name == "N") {
+    return LogFormatterItem::ptr(new TheadNameFormatItem());
+  }
+
+  return LogFormatterItem::ptr(nullptr);
+}
 }
 
 #endif // SIRIUS_LOG_FORMATTER_ITEM_H

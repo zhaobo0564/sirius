@@ -8,6 +8,8 @@
 #include "logger.h"
 #include "log_level.h"
 #include "log_event.h"
+#include "log_formatter_item.hpp"
+#include <vector>
 
 namespace sirius {
 // 日志格式化类
@@ -30,17 +32,19 @@ public:
    * %N 线程名称
    * 默认格式 "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"
    * */
-  LogFormatter(const std::string & pattern);
+  LogFormatter(const std::string &pattern);
 
-  std::string  format(Logger::ptr logger,
-                     LogLevel::Level level,
-                     LogEvent::ptr log_event);
+  bool init();
 
-  std::ostream& format(std::ostream & ofs,
-                       Logger::ptr logger,
-                       LogLevel::Level level,
+  std::string format(LogEvent::ptr log_event);
+
+  std::ostream &format(std::ostream &ofs,
                        LogEvent::ptr log_event);
-o
+
+private:
+  const std::string pattern_;
+  std::vector<LogFormatterItem::ptr> formatters_;
+};
 }
 
 #endif // SIRIUS_LOG_FORMATTER_H

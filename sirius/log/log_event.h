@@ -9,16 +9,20 @@
 #include <memory>
 #include <sstream>
 #include "log_level.h"
+#include "logger.h"
+
 namespace sirius {
 class LogEvent {
 public:
+  typedef std::shared_ptr<LogEvent> ptr;
+
   const std::string &getFileName() const;
 
   const std::string &getTheadName() const;
 
   const std::string &getFiberName() const;
 
-  const LogLevel &getLogLevel() const;
+  const LogLevel::Level &getLevel() const;
 
   int32_t getLogLineNum() const;
 
@@ -30,13 +34,11 @@ public:
 
   uint64_t getLogTime() const;
 
-  const std::stringstream &getContent() const;
-
-public:
-  typedef std::shared_ptr<LogEvent> ptr;
+  const std::string &getContent() const;
 
   LogEvent();
 
+  const Logger::ptr &getLogger() const;
 
 
 private:
@@ -44,13 +46,15 @@ private:
   const std::string thead_name_;
   const std::string fiber_name_;
 
-  LogLevel log_level_;
+  LogLevel::Level level_;
   int32_t log_line_num_;
   uint32_t elapse_;   // 程序启动依赖的耗时
   int32_t thread_id_;
   int32_t fiber_id_;  // 协程id
   uint64_t log_time_;
   std::stringstream content_;
+
+  Logger::ptr logger_;
 
 };
 }

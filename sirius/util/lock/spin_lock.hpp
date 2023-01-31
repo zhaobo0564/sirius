@@ -3,7 +3,7 @@
 //
 #ifndef SIRIUS_SPIN_LOCK_H
 #define SIRIUS_SPIN_LOCK_H
-
+#include "../none_copy.hpp"
 #ifdef __APPLE__
 #include <libkern/OSAtomic.h>
 #elif __linux__
@@ -11,8 +11,7 @@
 #endif
 // maybe win32
 namespace sirius {
-
-class Spinlock {
+class Spinlock : public NoneCopy{
 private:    //private copy-ctor and assignment operator ensure the lock never gets copied, which might cause issues.
   Spinlock operator=(const Spinlock &spinlock);
 

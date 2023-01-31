@@ -18,8 +18,8 @@ const std::string &LogEvent::getFiberName() const {
   return fiber_name_;
 }
 
-const LogLevel &LogEvent::getLogLevel() const {
-  return log_level_;
+const LogLevel::Level &LogEvent::getLevel() const {
+  return level_;
 }
 
 int32_t LogEvent::getLogLineNum() const {
@@ -42,7 +42,11 @@ uint64_t LogEvent::getLogTime() const {
   return log_time_;
 }
 
-const std::stringstream &LogEvent::getContent() const {
-  return content_;
+const std::string &LogEvent::getContent() const {
+  return content_.str();
+}
+
+const Logger::ptr &LogEvent::getLogger() const {
+  return logger_;
 }
 }
