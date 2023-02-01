@@ -10,5 +10,5 @@ FILE(GLOB_RECURSE
     util/lock/*.cpp
 )
 
-add_library(sirius_lib ${sirius_src} log/log_appender.cpp log/log_appender.h)
+add_library(sirius_lib ${sirius_src} log/log_appender.cpp log/log_appender.h log/LoggerManager.cpp log/LoggerManager.h log/log_warp.cpp log/log_warp.h)
 

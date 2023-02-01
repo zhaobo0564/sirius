@@ -17,7 +17,7 @@ class LogAppender{
 public:
   typedef std::shared_ptr<LogAppender> ptr;
 
-  virtual void log(Logger::ptr logger, LogEvent::ptr log_event) = 0;
+  virtual void log(LogEvent::ptr log_event) = 0;
 
 protected:
   LogLevel::Level level_ = LogLevel::DEBUG;
@@ -27,7 +27,7 @@ protected:
 
 class StdoutLogAppender : public LogAppender {
 public:
-  void log(Logger::ptr logger, LogEvent::ptr log_event);
+  void log(LogEvent::ptr log_event) ;
 };
 }
 

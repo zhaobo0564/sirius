@@ -7,7 +7,7 @@
 
 
 namespace sirius {
-  void StdoutLogAppender::log(Logger::ptr logger, LogEvent::ptr log_event) {
+  void StdoutLogAppender::log( LogEvent::ptr log_event) {
     if (log_event->getLevel() >= level_) {
       ScopedLock<Spinlock> lock(mutex_);
       log_formatter_->format(std::cout, log_event);
