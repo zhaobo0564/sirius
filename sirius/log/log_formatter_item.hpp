@@ -6,12 +6,11 @@
 #define SIRIUS_LOG_FORMATTER_ITEM_H
 
 #include <memory>
-#include "logger.h"
 #include "log_level.h"
-#include "log_event.h"
 #include <string>
 #include <sstream>
 #include <time.h>
+
 
 namespace sirius {
 
@@ -39,7 +38,7 @@ public:
   LogNameFormatItem() {};
 
   void format(std::ostream& oss, LogEvent::ptr log_event) override {
-    oss << log_event->getLogger()->getName();
+   // oss << log_event->getLogger()->getName();
   }
 };
 
@@ -81,7 +80,7 @@ public:
 
 class LevelFormatItem : public LogFormatterItem {
 public:
-  LevelFormatItem();
+  LevelFormatItem() {};
 
   void format(std::ostream &oss, LogEvent::ptr log_event) override {
     oss << LogLevel::GetInstance().LogLevelToString(log_event->getLevel());

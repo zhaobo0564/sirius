@@ -1,7 +1,6 @@
 //
 // Created by zhaobo on 22-12-18.
 //
-
 #ifndef SIRIUS_LOG_EVENT_H
 #define SIRIUS_LOG_EVENT_H
 #include <iostream>
@@ -9,7 +8,7 @@
 #include <memory>
 #include <sstream>
 #include "log_level.h"
-#include "logger.h"
+
 
 namespace sirius {
 class LogEvent {
@@ -36,9 +35,7 @@ public:
 
   const std::string &getContent() const;
 
-  LogEvent();
-
-  const Logger::ptr &getLogger() const;
+  std::stringstream &getSS();
 
 
 private:
@@ -53,9 +50,6 @@ private:
   int32_t fiber_id_;  // 协程id
   uint64_t log_time_;
   std::stringstream content_;
-
-  Logger::ptr logger_;
-
 };
 }
 

@@ -18,16 +18,6 @@ public:
 
   void log(LogEvent::ptr log_event);
 
-  void info(LogEvent::ptr log_event);
-
-  void debug(LogEvent::ptr log_event);
-
-  void warn(LogEvent::ptr log_event);
-
-  void error(LogEvent::ptr log_event);
-
-  void fatal(LogEvent::ptr log_event);
-
   void addAppender(LogAppender::ptr appender);
 
   void delAppender(LogAppender::ptr appender);
@@ -36,14 +26,13 @@ public:
 
   const std::string &getName() const;
 
+
 private:
   const std::string name_;
 
   std::vector<LogAppender::ptr> log_appender_;
 
   Spinlock mutex_;
-
-
 
 };
 }

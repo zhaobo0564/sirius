@@ -1,0 +1,6 @@
+option(BUILD_TEST_LOG "open if build test" ON)
+message(${BUILD_TEST_LOG})
+if(${BUILD_TEST_LOG})
+    add_executable(test_log log/test.log.cpp)
+    target_link_libraries(test_log PRIVATE log_lib)
+endif()

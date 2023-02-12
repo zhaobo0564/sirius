@@ -1,23 +1,26 @@
 //
-// Created by zhaobo on 2023/2/1.
+// Created by zhaobo on 2023/2/6.
 // email 1173007724@qq.com
 //
 
 #ifndef SIRIUS_LOG_WARP_H
 #define SIRIUS_LOG_WARP_H
-#include "log_event.h"
+#include "logger.h"
 
 namespace sirius {
 
+
 class LogWarp {
 public:
-  LogWarp(LogEvent::ptr log_event);
+  LogWarp(Logger::ptr logger, LogEvent::ptr log_event);
 
   ~LogWarp();
 
-private:
-  LogEvent::ptr log_event_;
+  std::stringstream &getEventSS();
 
+private:
+  Logger::ptr logger_;
+  LogEvent::ptr log_event_;
 };
 }
 

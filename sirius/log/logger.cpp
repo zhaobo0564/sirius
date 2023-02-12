@@ -30,7 +30,8 @@ namespace sirius {
     }
   }
 
-  void Logger::debug(LogEvent::ptr log_event) {
+  Logger::Logger(const std::string name): name_(name) {
 
   }
+
 }

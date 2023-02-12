@@ -3,7 +3,7 @@
 //
 #ifndef SIRIUS_SPIN_LOCK_H
 #define SIRIUS_SPIN_LOCK_H
-#include "../none_copy.hpp"
+#include "sirius/util/none_copy.hpp"
 #ifdef __APPLE__
 #include <libkern/OSAtomic.h>
 #elif __linux__

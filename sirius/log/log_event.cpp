@@ -46,7 +46,8 @@ const std::string &LogEvent::getContent() const {
   return content_.str();
 }
 
-const Logger::ptr &LogEvent::getLogger() const {
-  return logger_;
+std::stringstream &LogEvent::getSS() {
+  return content_;
 }
+
 }

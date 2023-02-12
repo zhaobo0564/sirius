@@ -3,17 +3,17 @@
 // email 1173007724@qq.com
 //
 
-#ifndef SIRIUS_LOGGERMANAGER_H
-#define SIRIUS_LOGGERMANAGER_H
+#ifndef SIRIUS_LOGGER_MANAGER_H
+#define SIRIUS_LOGGER_MANAGER_H
 #include "logger.h"
-#include "../util/none_copy.hpp"
+#include "sirius/util/none_copy.hpp"
 #include <map>
 
 namespace sirius {
-class LoggerManager : public NoneCopy {
+class logger_manager : public NoneCopy {
 public:
 
-  LoggerManager * getInstance();
+  logger_manager * getInstance();
 
   Logger::ptr getLogger(const std::string &name);
 
@@ -24,7 +24,7 @@ public:
   std::string toYamlString();
 
 private:
-  LoggerManager();
+  logger_manager();
 
   std::map<std::string, Logger::ptr> logger_map_;
 
@@ -33,4 +33,4 @@ private:
 }
 
 
-#endif //SIRIUS_LOGGERMANAGER_H
+#endif //SIRIUS_LOGGER_MANAGER_H

@@ -5,9 +5,8 @@
 
 #ifndef SIRIUS_LOG_APPENDER_H
 #define SIRIUS_LOG_APPENDER_H
-#include "logger.h"
-#include "../util/lock/spin_lock.hpp"
-#include "../util/lock/scoped_lock.hpp"
+#include "sirius/util/lock/spin_lock.hpp"
+#include "sirius/util/lock/scoped_lock.hpp"
 #include "log_formatter.h"
 
 namespace sirius {
@@ -27,8 +26,10 @@ protected:
 
 class StdoutLogAppender : public LogAppender {
 public:
-  void log(LogEvent::ptr log_event) ;
+  void log(LogEvent::ptr log_event);
 };
+
+
 }
 
 #endif //SIRIUS_LOG_APPENDER_H
