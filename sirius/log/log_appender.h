@@ -14,6 +14,7 @@ namespace sirius {
 class LogAppender{
   friend class Logger;
 public:
+  LogAppender():log_formatter_(new LogFormatter()){}
   typedef std::shared_ptr<LogAppender> ptr;
 
   virtual void log(LogEvent::ptr log_event) = 0;

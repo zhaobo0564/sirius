@@ -7,7 +7,8 @@
 
 namespace sirius {
 
-  LogFormatter::LogFormatter(const std::string &pattern) {
+  LogFormatter::LogFormatter(const std::string &pattern):pattern_(pattern) {
+    std::cout << "logformatter init :" << pattern << "\n";
     if (!init()) {
       std::cerr << "LogFormatter init error !!!\n";
     }
@@ -30,6 +31,7 @@ namespace sirius {
         if (pattern_[pos] == 'd') {
           std::string date_tmp = "";
           int left = 0, right = 0;
+          pos++;
           while (pos < pattern_.size()) {
             if (pattern_[pos] == '{') {
               left++;
@@ -37,7 +39,7 @@ namespace sirius {
               right++;
               break;
             } else {
-              date_tmp += std::string(pattern_[pos], 1);
+              date_tmp += std::string(&pattern_[pos], 1);
             }
             pos++;
           }
@@ -48,7 +50,7 @@ namespace sirius {
             return false;
           }
         } else {
-          lfi = getFormatterItem(std::string(pattern_[pos], 1));
+          lfi = getFormatterItem(std::string(&pattern_[pos], 1));
         }
         if (lfi == nullptr) {
           std::cerr << "log format parse error !!!\n";
@@ -56,7 +58,7 @@ namespace sirius {
         }
         formatters_.push_back(lfi);
       } else {
-        tmp += std::string(pattern_[pos], 1);
+        tmp += std::string(&pattern_[pos], 1);
       }
       pos++;
     }

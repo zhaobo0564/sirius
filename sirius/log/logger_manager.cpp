@@ -7,7 +7,7 @@
 #include "log_appender.h"
 
 namespace sirius {
-  Logger::ptr logger_manager::getLogger(const std::string &name) {
+  Logger::ptr LoggerManager::getLogger(const std::string &name) {
     auto it = logger_map_.find(name);
     if (it != logger_map_.end()) {
       return it->second;
@@ -18,12 +18,12 @@ namespace sirius {
     return logger;
   }
 
-  logger_manager * logger_manager::getInstance() {
-    static logger_manager logger_manager;
+  LoggerManager * LoggerManager::getInstance() {
+    static LoggerManager logger_manager;
     return &logger_manager;
   }
 
-  logger_manager::logger_manager() : root_(new Logger("root")) {
+  LoggerManager::LoggerManager() : root_(new Logger("root")) {
     root_->addAppender(LogAppender::ptr(new StdoutLogAppender));
     logger_map_["root"] = root_;
   }

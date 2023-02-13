@@ -10,10 +10,10 @@
 #include <map>
 
 namespace sirius {
-class logger_manager : public NoneCopy {
+class LoggerManager : public NoneCopy {
 public:
 
-  logger_manager * getInstance();
+  static LoggerManager * getInstance();
 
   Logger::ptr getLogger(const std::string &name);
 
@@ -24,7 +24,7 @@ public:
   std::string toYamlString();
 
 private:
-  logger_manager();
+  LoggerManager();
 
   std::map<std::string, Logger::ptr> logger_map_;
 

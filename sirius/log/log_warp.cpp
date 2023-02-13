@@ -10,6 +10,7 @@ namespace sirius {
   }
 
   LogWarp::~LogWarp() {
+    log_event_->setLogName(logger_->getName());
     logger_->log(log_event_);
   }
 

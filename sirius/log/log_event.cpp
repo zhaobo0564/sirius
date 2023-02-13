@@ -6,12 +6,24 @@
 
 namespace sirius {
 
+LogEvent::LogEvent(const std::string file_name,
+                   const std::string thread_name,
+                   const std::string fiber_name,
+                   const LogLevel::Level level,
+                   int32_t log_line_num,
+                   uint32_t elapse,
+                   int32_t thread_id,
+                   int32_t fiber_id,
+                   uint64_t log_time) : fiber_name_(fiber_name),
+                   thread_name_(thread_name), level_(level), log_line_num_(log_line_num),
+                   elapse_(elapse), thread_id_(thread_id), fiber_id_(fiber_id), log_time_(log_time){}
+
 const std::string &LogEvent::getFileName() const {
   return file_name_;
 }
 
-const std::string &LogEvent::getTheadName() const {
-  return thead_name_;
+const std::string &LogEvent::getThreadName() const {
+  return thread_name_;
 }
 
 const std::string &LogEvent::getFiberName() const {
@@ -48,6 +60,14 @@ const std::string &LogEvent::getContent() const {
 
 std::stringstream &LogEvent::getSS() {
   return content_;
+}
+
+void LogEvent::setLogName(const std::string log_name) {
+  log_name_ = log_name;
+}
+
+const std::string &LogEvent::getLogName() {
+  return log_name_;
 }
 
 }

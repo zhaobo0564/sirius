@@ -38,7 +38,7 @@ public:
   LogNameFormatItem() {};
 
   void format(std::ostream& oss, LogEvent::ptr log_event) override {
-   // oss << log_event->getLogger()->getName();
+    oss << log_event->getLogName();
   }
 };
 
@@ -65,7 +65,7 @@ public:
   TheadNameFormatItem() {};
 
   void format(std::ostream &oss, LogEvent::ptr log_event) override {
-    oss << log_event->getTheadName();
+    oss << log_event->getThreadName();
   }
 };
 
